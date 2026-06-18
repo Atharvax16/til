@@ -13,7 +13,8 @@ til/
         ├── README.md          ← summary + what each paper upgraded
         ├── Neural_MPNN.pdf
         ├── SchNet.pdf
-        └── DimeNet.pdf
+        ├── DimeNet.pdf
+        └── NequIP.pdf
 ```
 
 Each topic folder has its own `README.md` that summarizes the material and how the pieces
@@ -22,8 +23,8 @@ relate, with the source files (PDFs, snippets) alongside it.
 ## Topics
 
 - **[papers/Quantum_chemistry](papers/Quantum_chemistry/README.md)** — graph neural
-  networks for predicting molecular properties: MPNN → SchNet → DimeNet, and what each one
-  improved over the last.
+  networks for predicting molecular properties: MPNN → SchNet → DimeNet → NequIP, and what
+  each one improved over the last.
 
 ## Conventions
 

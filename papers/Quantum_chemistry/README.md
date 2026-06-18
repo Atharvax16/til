@@ -6,9 +6,9 @@ directly from atoms + 3D coordinates, instead of slow DFT or hand-engineered fea
 Read them in this order — each one fixes a concrete limitation of the previous:
 
 ```
-MPNN (2017)  →  SchNet (2017)  →  DimeNet (2020)
-unify the      make it smooth     add angles /
-framework      & physical         directionality
+MPNN (2017)  →  SchNet (2017)  →  DimeNet (2020)  →  NequIP (2022)
+unify the      make it smooth     add angles /        full E(3) equivariance,
+framework      & physical         directionality      data-efficient potentials
 ```
 
 ---
@@ -119,6 +119,46 @@ what lets the model capture bond angles and beat distance-only GNNs.
 
 ---
 
+## 4. NequIP — *E(3)-Equivariant GNNs for Data-Efficient and Accurate Interatomic Potentials*
+Batzner, Musaelian, Sun, Geiger, Mailoa, Kornbluth, Molinari, Smidt, Kozinsky (Harvard), Nature Communications 2022 · arXiv:2101.03164
+
+### Problem it fixes in DimeNet/SchNet
+DimeNet feeds direction in *indirectly*, through scalar invariants (distances + angles). The
+features the network stores are still **invariant scalars** — rotate the molecule and nothing
+inside changes. That throws away geometric information and means you need lots of data to learn
+the directional behavior. **Why direction matters:** forces are vectors, the energy surface
+depends on full 3D arrangement, and a model that only keeps scalars has to *re-learn* how the
+world rotates from examples instead of having it built in.
+
+### Core idea
+Make the **internal features themselves geometric (equivariant)**, not just invariant. Features
+are typed by rotation order `l`: `l=0` scalars, `l=1` vectors, `l=2` and higher tensors. When the
+molecule rotates, these features rotate with it (transform under the irreducible representations of
+**E(3)** — rotation, translation, reflection). That's **equivariance**: `f(rotate(x)) = rotate(f(x))`.
+
+The key operation is **how to combine two directions**: you can't just add or multiply vectors
+freely and stay equivariant. NequIP uses the **tensor product with Clebsch–Gordan coefficients**
+— the same rule that couples angular momenta in quantum mechanics — to combine two features of
+order `l₁` and `l₂` into valid outputs of order `|l₁−l₂| … l₁+l₂`. Radial distance is fed through a
+learned function and spherical harmonics carry the direction of each bond. (Built on the `e3nn`
+library / tensor-field networks.)
+
+### What it upgrades over DimeNet
+- **Equivariant features**, not just invariant inputs → keeps directional/tensor information all
+  the way through the network instead of collapsing it to scalars early.
+- **Extreme data efficiency**: reaches the accuracy of older models using **up to ~1000× fewer
+  training structures** — often only hundreds of reference calculations.
+- **State-of-the-art accuracy** on MD-17, QM9, and diverse materials (not just small organics),
+  with smooth energy-conserving forces suitable for long, stable MD simulations.
+
+### One thing to remember
+Don't just *input* direction as scalars — keep features **equivariant** and combine two directions
+with the **Clebsch–Gordan tensor product**, the only rule that lets you multiply geometric features
+together without breaking rotational symmetry. That built-in symmetry is what buys the huge jump in
+data efficiency.
+
+---
+
 ## The big picture — what each step "upgraded"
 
 | Paper | Year | Geometry used | Key new capability |
@@ -126,6 +166,7 @@ what lets the model capture bond angles and beat distance-only GNNs.
 | **MPNN**   | 2017 | distances (+ discrete bonds) | unified message-passing framework; SOTA on QM9 |
 | **SchNet** | 2017 | continuous distances | smooth PES → forces, energy conservation, MD |
 | **DimeNet**| 2020 | distances **+ angles** | directional info, spherical basis, big accuracy jump |
+| **NequIP**  | 2022 | full 3D vectors/tensors (**E(3)-equivariant**) | equivariant features + Clebsch–Gordan tensor product → ~1000× more data-efficient |
 
 Recurring themes: bake in **physical symmetries** (invariance/equivariance), avoid
 hand-engineered features, and keep the energy **smooth & differentiable** so forces are
