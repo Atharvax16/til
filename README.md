@@ -9,12 +9,15 @@ plain Markdown so they stay searchable and easy to revisit. One note, one commit
 til/
 ├── README.md
 └── papers/
-    └── Quantum_chemistry/
-        ├── README.md          ← summary + what each paper upgraded
-        ├── Neural_MPNN.pdf
-        ├── SchNet.pdf
-        ├── DimeNet.pdf
-        └── NequIP.pdf
+    ├── Quantum_chemistry/
+    │   ├── README.md          ← summary + what each paper upgraded
+    │   ├── Neural_MPNN.pdf
+    │   ├── SchNet.pdf
+    │   ├── DimeNet.pdf
+    │   └── NequIP.pdf
+    └── Attention/
+        ├── Attention_is_all_we_need.md   ← ground-up guide to the Transformer
+        └── Attention_is_all_you_need.pdf
 ```
 
 Each topic folder has its own `README.md` that summarizes the material and how the pieces
@@ -25,6 +28,9 @@ relate, with the source files (PDFs, snippets) alongside it.
 - **[papers/Quantum_chemistry](papers/Quantum_chemistry/README.md)** — graph neural
   networks for predicting molecular properties: MPNN → SchNet → DimeNet → NequIP, and what
   each one improved over the last.
+- **[papers/Attention](papers/Attention/Attention_is_all_we_need.md)** — a ground-up guide
+  to *Attention Is All You Need*: Q/K/V, scaled dot-product and multi-head attention, and
+  the full Transformer architecture worked from the numbers up.
 
 ## Conventions
 
