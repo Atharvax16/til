@@ -1,3 +1,24 @@
-"MASTER_PROMPT_for_paper.md" 
-"thesis_rag/" 
-".ipynb_checkpoints/" 
+# --- Project-specific ---
+MASTER_PROMPT_for_paper.md
+thesis_rag/
+
+# Downloaded datasets (auto-fetched by torchvision; never commit)
+data/
+**/data/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

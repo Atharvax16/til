@@ -272,8 +272,9 @@ Keeping D and G synchronized is the core practical tension.
 
 ## 10. The experiment I ran
 
-Built a notebook (`gan_saturating_vs_nonsaturating.ipynb`) — MLP G and D on a 2D
-8-mode-ring distribution — comparing the two losses:
+Built a notebook (`gan_sat_vs_nonsat_8blobs.ipynb`; MNIST version in
+`gan_sat_vs_nonsat_mnist.ipynb`) — MLP G and D on a 2D 8-mode-ring distribution —
+comparing the two losses:
 
 - **Analytical:** plotted gradient magnitude vs `D(G(z))`. Saturating ∝ `D(G(z))` (→0 early);
   non-saturating ∝ `1 − D(G(z))` (≈1 early).
