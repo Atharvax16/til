@@ -16,6 +16,10 @@ til/
     ├── Attention/
     │   ├── paper/             ← Attention_is_all_you_need.pdf
     │   └── notes/             ← Attention_is_all_we_need.md (ground-up Transformer guide)
+    ├── Genai_forensics/
+    │   ├── paper/             ← Intermediate_encoder_blocks.pdf (RINE)
+    │   ├── notes/             ← RINE_paper_notes.md
+    │   └── notebooks/         ← intermediate_blocks_explorer.ipynb (Colab GPU)
     └── Generative_Adversarial_Nets/
         ├── README.md          ← summary + how the notebooks relate
         ├── paper/             ← generative-adversarial-nets-Paper.pdf
@@ -35,6 +39,11 @@ the topic root summarizes the material and ties the pieces together.
 - **[papers/Attention](papers/Attention/notes/Attention_is_all_we_need.md)** — a ground-up guide
   to *Attention Is All You Need*: Q/K/V, scaled dot-product and multi-head attention, and
   the full Transformer architecture worked from the numbers up.
+- **[papers/Genai_forensics](papers/Genai_forensics/notes/RINE_paper_notes.md)** — synthetic-image
+  detection with **RINE** (Koutlis & Papadopoulos, ECCV 2024): why fusing **intermediate CLIP
+  encoder-block** features generalizes across generators, with a Colab notebook that hooks every
+  block of a frozen CLIP ViT-L/14 and "unblocks" them last→first to make edge/texture vs semantic
+  features visible.
 - **[papers/Generative_Adversarial_Nets](papers/Generative_Adversarial_Nets/README.md)** — the
   original GAN (Goodfellow et al., 2014) and the **non-saturating loss trick**, with notebooks
   that make the saturating-vs-non-saturating gradient gap visible and show why Adam hides it
