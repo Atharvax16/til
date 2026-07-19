@@ -10,20 +10,20 @@ Run config: 224px input -> 16x16 = 256 patch grid | 3000 steps | batch 12 | devi
 ## 1-3. Baseline / Steerability / Wrong-prompt sanity check
 | condition | patch-grid IoU | PR-AUC |
 |---|---|---|
-| baseline (frozen, no text) | 0.1151 | 0.2093 |
-| steerability (correct prompt) | 0.3001 | 0.5135 |
-| wrong prompt (mismatched) | 0.2649 | 0.4566 |
+| baseline (frozen, no text) | 0.1295 | 0.2208 |
+| steerability (correct prompt) | 0.2940 | 0.5113 |
+| wrong prompt (mismatched) | 0.2323 | 0.3926 |
 
-collapse_ratio = **0.810** (FAIL -- looks like memorization)
+collapse_ratio = **0.625** (FAIL -- looks like memorization)
 
 ## 4. Gate (omega) sweep
 | omega | IoU | PR-AUC | CLS linear-probe acc |
 |---|---|---|---|
-| 0.00 | 0.1151 | 0.2093 | 0.5208 |
-| 0.25 | 0.1494 | 0.2660 | 0.6375 |
-| 0.50 | 0.1849 | 0.3292 | 0.6750 |
-| 0.75 | 0.2653 | 0.4565 | 0.7250 |
-| 1.00 | 0.3001 | 0.5135 | 0.6208 |
+| 0.00 | 0.1295 | 0.2208 | 0.5542 |
+| 0.25 | 0.1493 | 0.2660 | 0.6917 |
+| 0.50 | 0.1788 | 0.3170 | 0.6250 |
+| 0.75 | 0.2629 | 0.4483 | 0.6167 |
+| 1.00 | 0.2940 | 0.5113 | 0.5542 |
 
 omega=0 verified to reproduce frozen DINOv2 exactly (see sanity check above).
 
@@ -35,5 +35,7 @@ omega=0 verified to reproduce frozen DINOv2 exactly (see sanity check above).
 ![training curve](training_curve.png)
 
 ![gate sweep](gate_sweep.png)
+
+![gate diagnostic](gate_diagnostic.png)
 
 ![correct vs wrong prompt heatmaps](heatmap_comparison.png)
