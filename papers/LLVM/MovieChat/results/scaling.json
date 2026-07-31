@@ -1,0 +1,291 @@
+{
+  "experiment": "scaling",
+  "device": "CUDA NOT available. Apple Silicon (MPS). No VRAM counter exists; process RSS is reported instead and is labelled as such.",
+  "config": {
+    "window": 16,
+    "short_term_frames": 18,
+    "long_term_frames": 256,
+    "consolidation_length": 2,
+    "tokens_per_frame": 32,
+    "dim": 256,
+    "dense_tokens": 197,
+    "dense_dim": 768,
+    "scene_length": 40,
+    "jitter": 0.05,
+    "seed": 0
+  },
+  "rows": [
+    {
+      "n_frames": 100,
+      "seconds": 0.14654804100064212,
+      "moviechat": {
+        "stored_frames": 12.0,
+        "stored_mb": 0.375,
+        "accounting_bytes": 393216,
+        "verified_tensor_bytes": 393216,
+        "consolidations": 6,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 100.0,
+        "stored_mb": 3.125,
+        "accounting_bytes": 3276800,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 100.0,
+        "stored_mb": 57.71484375,
+        "accounting_bytes": 60518400,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 442.28125,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 167,
+      "seconds": 0.21051608299967484,
+      "moviechat": {
+        "stored_frames": 18.0,
+        "stored_mb": 0.5625,
+        "accounting_bytes": 589824,
+        "verified_tensor_bytes": 589824,
+        "consolidations": 9,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 167.0,
+        "stored_mb": 5.21875,
+        "accounting_bytes": 5472256,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 167.0,
+        "stored_mb": 96.3837890625,
+        "accounting_bytes": 101065728,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 488.40625,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 278,
+      "seconds": 0.32847750000109954,
+      "moviechat": {
+        "stored_frames": 30.0,
+        "stored_mb": 0.9375,
+        "accounting_bytes": 983040,
+        "verified_tensor_bytes": 983040,
+        "consolidations": 15,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 278.0,
+        "stored_mb": 8.6875,
+        "accounting_bytes": 9109504,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 278.0,
+        "stored_mb": 160.447265625,
+        "accounting_bytes": 168241152,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 563.28125,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 464,
+      "seconds": 0.5227438330002769,
+      "moviechat": {
+        "stored_frames": 50.0,
+        "stored_mb": 1.5625,
+        "accounting_bytes": 1638400,
+        "verified_tensor_bytes": 1638400,
+        "consolidations": 25,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 464.0,
+        "stored_mb": 14.5,
+        "accounting_bytes": 15204352,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 464.0,
+        "stored_mb": 267.796875,
+        "accounting_bytes": 280805376,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 687.359375,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 774,
+      "seconds": 0.8372483329985698,
+      "moviechat": {
+        "stored_frames": 82.0,
+        "stored_mb": 2.5625,
+        "accounting_bytes": 2686976,
+        "verified_tensor_bytes": 2686976,
+        "consolidations": 41,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 774.0,
+        "stored_mb": 24.1875,
+        "accounting_bytes": 25362432,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 774.0,
+        "stored_mb": 446.712890625,
+        "accounting_bytes": 468412416,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 894.765625,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 1292,
+      "seconds": 1.3615892920006445,
+      "moviechat": {
+        "stored_frames": 136.0,
+        "stored_mb": 4.25,
+        "accounting_bytes": 4456448,
+        "verified_tensor_bytes": 4456448,
+        "consolidations": 68,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 1292.0,
+        "stored_mb": 40.375,
+        "accounting_bytes": 42336256,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 1292.0,
+        "stored_mb": 745.67578125,
+        "accounting_bytes": 781897728,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 1239.4375,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 2154,
+      "seconds": 2.2551582910000434,
+      "moviechat": {
+        "stored_frames": 228.0,
+        "stored_mb": 7.125,
+        "accounting_bytes": 7471104,
+        "verified_tensor_bytes": 7471104,
+        "consolidations": 114,
+        "compactions": 0
+      },
+      "naive_compressed": {
+        "stored_frames": 2154.0,
+        "stored_mb": 67.3125,
+        "accounting_bytes": 70582272,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 2154.0,
+        "stored_mb": 1243.177734375,
+        "accounting_bytes": 1303566336,
+        "materialization_truncated_at": null
+      },
+      "process_rss_mb": 1809.234375,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 3594,
+      "seconds": 3.7749728329999925,
+      "moviechat": {
+        "stored_frames": 256.0,
+        "stored_mb": 8.0,
+        "accounting_bytes": 8388608,
+        "verified_tensor_bytes": 8388608,
+        "consolidations": 190,
+        "compactions": 62
+      },
+      "naive_compressed": {
+        "stored_frames": 3594.0,
+        "stored_mb": 112.3125,
+        "accounting_bytes": 117768192,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 3594.0,
+        "stored_mb": 2074.271484375,
+        "accounting_bytes": 2175031296,
+        "materialization_truncated_at": 3549
+      },
+      "process_rss_mb": 2757.203125,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 5995,
+      "seconds": 4.061559416999444,
+      "moviechat": {
+        "stored_frames": 256.0,
+        "stored_mb": 8.0,
+        "accounting_bytes": 8388608,
+        "verified_tensor_bytes": 8388608,
+        "consolidations": 316,
+        "compactions": 188
+      },
+      "naive_compressed": {
+        "stored_frames": 5995.0,
+        "stored_mb": 187.34375,
+        "accounting_bytes": 196444160,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 5995.0,
+        "stored_mb": 3460.0048828125,
+        "accounting_bytes": 3628078080,
+        "materialization_truncated_at": 3549
+      },
+      "process_rss_mb": 2889.46875,
+      "cuda_max_allocated_mb": null
+    },
+    {
+      "n_frames": 10000,
+      "seconds": 4.647181042000739,
+      "moviechat": {
+        "stored_frames": 256.0,
+        "stored_mb": 8.0,
+        "accounting_bytes": 8388608,
+        "verified_tensor_bytes": 8388608,
+        "consolidations": 527,
+        "compactions": 399
+      },
+      "naive_compressed": {
+        "stored_frames": 10000.0,
+        "stored_mb": 312.5,
+        "accounting_bytes": 327680000,
+        "materialization_truncated_at": null
+      },
+      "naive_dense": {
+        "stored_frames": 10000.0,
+        "stored_mb": 5771.484375,
+        "accounting_bytes": 6051840000,
+        "materialization_truncated_at": 3549
+      },
+      "process_rss_mb": 3021.40625,
+      "cuda_max_allocated_mb": null
+    }
+  ],
+  "crossing_frames": {
+    "naive_dense": 42581.766497461926,
+    "naive_compressed": 786432.0,
+    "moviechat": null
+  },
+  "moviechat_bound_frames": 274,
+  "moviechat_bound_mb": 8.5625,
+  "integrity": {
+    "accounting_matches_tensors": true,
+    "naive_dense_linear_max_deviation_bytes": 0,
+    "moviechat_within_bound": true
+  }
+}
