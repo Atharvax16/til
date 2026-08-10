@@ -1,0 +1,13 @@
+retinamnist · frozen features · train n=1080 · test n=400 · 100 pretrain epochs each
+--------------------------------------------------------------------
+method                  linear acc  linear bacc   kNN acc   kNN bacc
+--------------------------------------------------------------------
+MAE                         0.5275       0.3708    0.4800     0.3252
+I-JEPA                      0.5175       0.3601    0.4975     0.3542
+I-JEPA (EMA teacher)        0.5050       0.3351    0.4900     0.3544
+Random init                 0.5275       0.3520    0.5025     0.3565
+--------------------------------------------------------------------
+majority-class baseline      0.4350       0.2000    0.4350     0.2000
+--------------------------------------------------------------------
+bacc = balanced accuracy (mean per-class recall); with imbalanced grades it is the
+more honest of the two. kNN is the more stable probe at this dataset size.
