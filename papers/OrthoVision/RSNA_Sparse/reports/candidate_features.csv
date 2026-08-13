@@ -1,0 +1,16 @@
+feature,firing_rate,candidate_concept,corr,dict_align,best_attribute,lift
+F1022,0.036,t2_weighted,0.044,t2_weighted,bone_marrow_edema,3.22
+F600,0.033,t1_weighted,0.059,t2_weighted,bone_marrow_edema,2.65
+F136,0.034,bone_marrow_edema,0.15,coronal_view,[view=sagittal],2.51
+F234,0.032,cartilage_defect,0.147,cartilage_defect,[view=coronal],2.59
+F262,0.029,meniscus_tear,0.101,meniscus_tear,[protocol=T2],2.8
+F482,0.03,cartilage_defect,0.211,cartilage_defect,bone_marrow_edema,2.65
+F812,0.056,t2_weighted,0.039,t1_weighted,bone_marrow_edema,3.5
+F759,0.054,t2_weighted,-0.077,t2_weighted,bone_marrow_edema,4.35
+F395,0.053,cartilage_defect,0.193,cartilage_defect,cartilage_defect,3.14
+F55,0.024,t2_weighted,-0.04,t2_weighted,bone_marrow_edema,3.22
+F583,0.023,t2_weighted,0.055,t2_weighted,bone_marrow_edema,2.93
+F449,0.043,t2_weighted,-0.013,bone_marrow_edema,[view=axial],2.8
+F861,0.032,meniscus,0.096,meniscus,meniscus_tear,2.64
+F880,0.021,pcl,0.084,sagittal_view,bone_marrow_edema,2.84
+F140,0.046,t1_weighted,-0.114,t2_weighted,[view=axial],2.8

@@ -1,0 +1,23 @@
+
+LIMITATIONS - state these wherever the results are shown
+--------------------------------------------------------
+1. Data. This run used: synthetic control corpus. A synthetic corpus has known generative factors, which makes
+   the interpretability claims *checkable*, but it says nothing about real knee MRI. Nothing here
+   generalises to the RSNA challenge unless it is rerun on that data.
+2. Encoder. BioMedCLIP is a general biomedical encoder, not a knee-MRI foundation model.
+3. Geometry. One pooled embedding per 2-D slice discards the 3-D, multi-slice, multi-sequence
+   structure that real knee reading depends on.
+4. Confounding. 576 of 1007 usable features (57%) were at
+   least as enriched for an acquisition attribute (view, pulse sequence, scanner) as for any
+   pathology. A feature that tracks a label may be encoding acquisition or artifact instead.
+5. More units means a higher maximum by chance. The shuffled-label null
+   (best precision@k 0.39 for the SAE bank) and the width- and
+   L0-matched random-feature control are the honest comparison, not the raw best score.
+   Note also that AUROC is capped for sparse units (section 5.1), which is why precision@k is primary.
+6. Faithfulness. QA accuracy from a sparse memory does not show the answer was produced *because of*
+   the retained features. That needs counterfactual ablation and expert review.
+7. Naming. Every feature label in this notebook is a CANDIDATE concept. Automated labels are
+   hypotheses until a qualified reader confirms them.
+
+This is an interpretability and representation-learning study. It is not a diagnostic tool and not
+a clinical decision-support system.

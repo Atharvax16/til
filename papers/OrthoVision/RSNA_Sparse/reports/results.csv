@@ -1,0 +1,41 @@
+,value
+data_source,synthetic control corpus
+encoder,biomedclip
+shared_image_text_space,True
+device,mps
+n_images,6000
+n_patients,1000
+d_in,512
+d_hidden,1024
+sae_mode,l1
+train_seconds,12.1
+val_mse_normalised,40.1701
+train_mse_normalised,10.8989
+val_explained_variance,0.9235
+val_cosine_original_space,0.9961
+val_L0,33.48
+val_dead_feature_pct,1.17
+usable_features,1007
+mean_pathology_precision_sae,0.837
+mean_pathology_precision_dense,0.891
+mean_pathology_precision_random,0.821
+mean_pathology_base_rate,0.236
+pathology_attrs_sae_beats_dense,2/6
+matched_coverage_k,52
+attrs_per_informative_unit_sae,1.999
+attrs_per_informative_unit_dense,4.721
+attrs_per_informative_unit_random,2.124
+frac_single_attribute_sae,0.32
+frac_single_attribute_dense,0.006
+verdict_purity,dense ahead
+verdict_monosemanticity,SAE ahead
+shuffled_label_null_precision_sae,0.392
+best_auroc_sae,0.652
+best_auroc_dense,0.999
+usable_features_scored,1007
+pathology_dominant_features,291
+acquisition_dominant_features,576
+qa_auroc_dense,0.93
+qa_auroc_full_sparse,0.918
+qa_auroc_memory_k8,0.897
+qa_auroc_random_k8,0.518
