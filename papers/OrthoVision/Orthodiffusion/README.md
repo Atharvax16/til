@@ -5,7 +5,7 @@ objectives compare as medical-image representation learners, and at what abstrac
 (diffusion timestep) does the denoising objective peak?**
 
 Everything lives in `ssl_medical_compare.ipynb`; run it top to bottom. Outputs land in
-`results_smoke/` (CSV + `tables.md` + `figures/`) and `checkpoints_smoke/`.
+`results/` (CSV + `tables.md` + `figures/`) and `checkpoints/`.
 
 ## Design
 
@@ -27,9 +27,9 @@ Everything lives in `ssl_medical_compare.ipynb`; run it top to bottom. Outputs l
 | I1 | one shared encoder class + config | `build_encoder()`; `assert_param_parity()` compares count *and* (name, shape) signature |
 | I2 | one feature-extraction site | `Encoder.extract()` / `extract_features()`; only `t` varies |
 | I3 | pretraining is label-blind, train split only | `UnlabeledImageDataset` holds no labels; `label_blind()` makes labeled reads raise |
-| I4 | matched compute budget | one `pretrain:` config block: 40 steps, AdamW, warmup+cosine, for every arm |
+| I4 | matched compute budget | one `pretrain:` config block: 4000 steps, AdamW, warmup+cosine, for every arm |
 | I5 | matched downstream protocol | `probe:` / `finetune:` config blocks; the functions take no per-arm hyperparameters |
-| I6 | honest test discipline | seeds [0], mean ± std, selection on val, test evaluated once per config |
+| I6 | honest test discipline | seeds [0, 1, 2], mean ± std, selection on val, test evaluated once per config |
 
 ## Milestones
 
@@ -46,7 +46,7 @@ Everything lives in `ssl_medical_compare.ipynb`; run it top to bottom. Outputs l
 
 ## Reading the two headline outputs
 
-**The table** (`results_smoke/tables.md`). Compare *within a column*: the probe column
+**The table** (`results/tables.md`). Compare *within a column*: the probe column
 answers "how linearly separable is the frozen bottleneck", the finetune column answers "how good
 an initialization is this". A pretrained arm only earns a claim if it beats **both** the
 random-init probe control and supervised-10%.
@@ -68,11 +68,11 @@ jupyter lab                              # then: Restart & Run All
 Leave `SMOKE = True` for a full end-to-end dry run on a subset (~2 min), then set it to
 `False` for the real run. Measured on an M-series laptop (MPS, batch 128 @ 64px):
 ~0.43 s/step for diffusion and ~0.37 s/step for MAE, i.e. ~30 min per arm per seed at
-40 steps (~3 h for the full grid) plus ~30 min for fine-tunes, baselines and the
+4000 steps (~3 h for the full grid) plus ~30 min for fine-tunes, baselines and the
 sweep. To shorten it, cut `eval.seeds` to `[0]` or lower `pretrain.steps` **for every arm at
 once** — a per-arm budget would break I4. Checkpoints are reused across runs; pass `force=True` to
 `pretrain_arm` to retrain. Determinism is not guaranteed on MPS, which is why every number is
-reported as mean ± std over 1 seed(s).
+reported as mean ± std over 3 seed(s).
 
 ## Known asymmetry (flagged, not hidden)
 
