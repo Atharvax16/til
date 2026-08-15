@@ -1,0 +1,98 @@
+
+project:
+  name: ssl-medical-compare
+  results_dir: results
+  ckpt_dir: checkpoints
+  figures_dir: results/figures
+
+data:
+  dataset: pneumoniamnist
+  size: 64                 # 64x64 variant if the installed medmnist has it, else 28 -> upsample
+  in_channels: 1
+  batch_size: 128          # pretraining batch (shared by every arm -- part of I4)
+  eval_batch_size: 256
+  num_workers: 0           # 0 is the safe choice for MPS inside a notebook
+  normalize_to_pm1: true   # map [0,1] -> [-1,1]; shared by all arms (diffusion needs it)
+  augment:
+    hflip: true
+    random_crop_pad: 4
+  smoke_subset: 512
+
+encoder:                   # I1: ONE encoder config, used by every arm
+  base: 32
+  ch_mults: [1, 2, 4, 8]   # 3 downsamples: 64 -> 32 -> 16 -> 8, channels 32/64/128/256
+  blocks_per_stage: 1
+  n_mid: 2                 # two mid blocks at the bottleneck -> selectable extraction points
+  emb_dim: 128             # timestep embedding width (present in every arm, t=0 when unused)
+  groups: 8                # GroupNorm groups
+  dropout: 0.0
+  default_block: bottleneck  # alias for the last mid block
+  pool: gap                # gap | attn   (GAP is the default; attn adds probe-side params)
+
+pretrain:                  # I4: identical budget/optimizer/schedule for every arm
+  # Measured on an M-series laptop at batch 128 / 64px: ~0.43 s/step (diffusion),
+  # ~0.37 s/step (MAE)  ->  4000 steps is ~29 min per arm per seed, ~3 h for the full
+  # 2 arms x 3 seeds grid. Cut `eval.seeds` to [0] for a first real run if that is too long.
+  steps: 4000
+  lr: 2.0e-4
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+  warmup_steps: 200
+  schedule: cosine
+  grad_clip: 1.0
+  log_every: 250
+  smoke_steps: 40
+
+diffusion:
+  T: 1000
+  schedule: cosine         # cosine | linear
+  decoder_skips: true      # standard DDPM U-Net skips (see README note on the MAE asymmetry)
+  sample_n: 8
+  sample_steps: 250        # strided DDIM(eta=1) sampler; 250 of 1000 is plenty for a sanity check
+  sample_eta: 1.0
+  smoke_sample_steps: 25
+
+mae:
+  patch_size: 8            # 64/8 = 8x8 = 64 patches
+  mask_ratio: 0.6
+  decoder_skips: false     # SimMIM-style: reconstruct from the bottleneck, no skip shortcut
+
+jepa:
+  enabled: true           # phase 2 -- flip to true to run M7
+  patch_size: 8
+  mask_ratio: 0.5
+  ema: 0.996
+  pred_hidden: 256
+
+probe:                     # I5: ONE linear-probe recipe, never tuned per arm
+  epochs: 60
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  batch_size: 256
+  standardize: true
+  smoke_epochs: 10
+
+finetune:                  # I5: ONE finetune recipe, never tuned per arm
+  epochs: 15
+  encoder_lr: 1.0e-4
+  head_lr: 1.0e-3
+  weight_decay: 1.0e-4
+  batch_size: 64
+  grad_clip: 1.0
+  use_arm_t: false         # false -> every arm is fine-tuned on clean inputs (t=0)
+  smoke_epochs: 1
+
+eval:
+  seeds: [0, 1, 2]
+  diffusion_t: 100         # provisional extraction t for the M4 table; M6 uses the val-selected t
+  feature_noise_seed: 1234 # fixed noise for deterministic q_sample at feature-extraction time
+  class_weighted_loss: true
+
+ablation:
+  timesteps: [10, 30, 50, 100, 150, 200, 300, 500]
+  blocks: [mid1, mid2]
+  smoke_timesteps: [10, 100]
+  smoke_blocks: [mid2]
+
+baselines:
+  label_fractions: [1.0, 0.1]
