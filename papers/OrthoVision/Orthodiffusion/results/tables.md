@@ -33,6 +33,15 @@
 | supervised-100 | t=0          | —             | —             | 0.969 ± 0.004  | 0.980 ± 0.003  |
 | supervised-10  | t=0          | —             | —             | 0.952 ± 0.003  | 0.965 ± 0.003  |
 
+### M8 — label efficiency: test AUROC at 10% labels (mean ± std over seeds [0, 1, 2])
+
+| arm                           | 10% finetune AUROC | 10% finetune AUPRC | 100% finetune AUROC | frozen probe AUROC |
+|-------------------------------|--------------------|--------------------|---------------------|--------------------|
+| diffusion                     | 0.964 ± 0.005      | 0.976 ± 0.003      | 0.977 ± 0.004       | 0.971 ± 0.002      |
+| mae                           | 0.954 ± 0.001      | 0.970 ± 0.004      | 0.975 ± 0.002       | 0.960 ± 0.002      |
+| jepa                          | 0.948 ± 0.008      | 0.963 ± 0.009      | 0.966 ± 0.007       | 0.928 ± 0.003      |
+| supervised-10 (= random init) | 0.952 ± 0.003      | 0.965 ± 0.003      | 0.969 ± 0.004       | —                  |
+
 
 encoder params (identical across arms): 4,058,656
 

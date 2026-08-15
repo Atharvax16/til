@@ -43,6 +43,7 @@ Everything lives in `ssl_medical_compare.ipynb`; run it top to bottom. Outputs l
 | M5 | timestep/block ablation -> `figures/m5_auroc_vs_timestep.png`, val-selected `t` |
 | M6 | fine-tune every arm -> final arm x {probe, finetune} table |
 | M7 | JEPA (optional) |
+| M8 | label efficiency: every arm fine-tuned on the same 10% label subset as `supervised-10` |
 
 ## Reading the two headline outputs
 
